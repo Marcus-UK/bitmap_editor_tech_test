@@ -14,9 +14,11 @@ describe TextParser do
       text_parser.parse(file)
       expect(text_parser.instructions).to eq [['I', 5, 6], ['L', 1, 3, 'A'] ]
     end
+
+    it 'returns an error if the file passed to it is not valid' do
+      file = './examples/invalid_test_file.txt'
+      error = "Please provide a valid file.\n"
+      expect { text_parser.parse(file) }.to output(error).to_stdout
+    end
   end
-
-
-
-
 end
