@@ -8,5 +8,15 @@ describe TextParser do
     expect(text_parser.instructions).to eq []
   end
 
+  describe '#parse' do
+    it 'accepts a .txt file and converts each line to an individual array' do
+      file = './examples/parse_test_file.txt'
+      text_parser.parse(file)
+      expect(text_parser.instructions).to eq [['I', 5, 6], ['L', 1, 3, 'A'] ]
+    end
+  end
+
+
+
 
 end
