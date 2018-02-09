@@ -10,13 +10,13 @@ describe TextParser do
 
   describe '#parse' do
     it 'accepts a .txt file and converts each line to an individual array' do
-      file = './examples/parse_test_file.txt'
+      file = './spec/fixtures/parse_test_file.txt'
       text_parser.parse(file)
       expect(text_parser.instructions).to eq [['I', 5, 6], ['L', 1, 3, 'A'] ]
     end
 
     it 'returns an error if the file passed to it is not valid' do
-      file = './examples/invalid_test_file.txt'
+      file = './spec/fixtures/invalid_test_file.txt'
       error = "Please provide a valid file.\n"
       expect { text_parser.parse(file) }.to output(error).to_stdout
     end
