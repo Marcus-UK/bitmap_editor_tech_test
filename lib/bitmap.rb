@@ -7,6 +7,10 @@ attr_reader :image
     @image = Array.new(height) { Array.new(width, "O") }
   end
 
+  def display_image
+    image.each { |row| puts row.join("")}
+  end
+
   private
 
   def max_size_error

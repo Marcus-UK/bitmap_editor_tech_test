@@ -12,4 +12,14 @@ describe Bitmap do
     size_error = "The bitmap cannot have a height or width greater than 250."
     expect { described_class.new(251, 251) }.to raise_error(size_error)
   end
+
+  describe '#display_image' do
+
+    it ' outputs the current state of the image' do
+      image_to_display = ("OOO\n" +
+                          "OOO\n" +
+                          "OOO\n")
+      expect{ bitmap.display_image }.to output(image_to_display).to_stdout
+    end
+  end
 end
