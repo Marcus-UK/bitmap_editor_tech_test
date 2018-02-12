@@ -17,8 +17,8 @@ describe TextParser do
 
     it 'returns an error if the file passed to it is not valid' do
       file = './spec/fixtures/invalid_test_file.txt'
-      error = "Please provide a valid file.\n"
-      expect { text_parser.parse(file) }.to output(error).to_stdout
+      invalid_file_error = "Please provide a valid file."
+      expect { text_parser.parse(file) }.to raise_error(invalid_file_error)
     end
   end
 end

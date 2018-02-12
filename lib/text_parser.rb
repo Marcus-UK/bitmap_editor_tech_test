@@ -7,7 +7,7 @@ class TextParser
   end
 
   def parse(file)
-    return puts "Please provide a valid file." if invalid_file?(file)
+    raise invalid_file_error if invalid_file?(file)
     File.open(file).each do |line|
       instruction = line.split(" ")
       convert_string_to_integer(instruction)
@@ -25,6 +25,10 @@ class TextParser
 
   def invalid_file?(file)
     File.zero?(file) || !File.exist?(file)
+  end
+
+  def invalid_file_error
+    "Please provide a valid file."
   end
 
 end
