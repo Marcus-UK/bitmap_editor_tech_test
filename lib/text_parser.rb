@@ -13,6 +13,7 @@ class TextParser
       convert_string_to_integer(instruction)
       @instructions.push(instruction)
     end
+    instructions
   end
 
   private
