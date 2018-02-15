@@ -1,11 +1,21 @@
 class Bitmap
 MAX_DIMENSION = 250
+
 attr_reader :image
 
   def initialize(width, height)
     raise max_size_error if dimension_too_large?(width, height)
     @image = Array.new(height) { Array.new(width, "O") }
   end
+
+  def command_interpreter(command)
+    case command[0]
+      when 'S' then display_image
+      when 'L' then colour_pixel(command[1], command[2], command[3])
+    end
+  end
+
+private
 
   def display_image
     image.each { |row| puts row.join("")}
@@ -15,8 +25,6 @@ attr_reader :image
     raise location_error if invalid_location?(x_loc, y_loc)
     image[x_loc - 1][y_loc - 1] = colour
   end
-
-  private
 
   def max_size_error
     "The bitmap cannot have a height or width greater than #{MAX_DIMENSION}."
@@ -34,6 +42,4 @@ attr_reader :image
   def dimension_too_large?(width, height)
     width > 250 || height > 250
   end
-
-
 end

@@ -13,26 +13,23 @@ describe Bitmap do
     expect { described_class.new(251, 251) }.to raise_error(size_error)
   end
 
-  describe '#display_image' do
+  describe '#command_interpreter' do
 
-    it ' outputs the current state of the image' do
+    it 'takes an S command and outputs the image' do
       image_to_display = ("OOO\n" +
                           "OOO\n" +
                           "OOO\n")
-      expect{ bitmap.display_image }.to output(image_to_display).to_stdout
+      expect{ bitmap.command_interpreter(['S']) }.to output(image_to_display).to_stdout
     end
-  end
 
-  describe '#colour_pixel' do
-
-    it 'changes the color of a pixel at the specified location' do
-      bitmap.colour_pixel(1, 1, "C")
+    it 'takes an L command and changes the colour of the specified pixel' do
+      bitmap.command_interpreter(['L', 1, 1,'C'])
       expect(bitmap.image[0][0]).to eq "C"
     end
 
-    it 'raises an error if the location passed is not on the bitmap' do
-      location_error = 'Location is not on the bitmap.'
-      expect{ bitmap.colour_pixel(4, 4, "C") }.to raise_error(location_error)
+    it 'raises an error if an L command is passed an invalid location' do
+      loc_error = 'Location is not on the bitmap.'
+      expect{ bitmap.command_interpreter(['L', 4, 4, 'C']) }.to raise_error(loc_error)
     end
   end
 end

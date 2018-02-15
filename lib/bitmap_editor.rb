@@ -15,7 +15,7 @@ class BitmapEditor
       if instruction[0] == "I" && command_valid?(instruction)
         create_bitmap(instruction[1], instruction[2])
       elsif command_valid?(instruction)
-        bitmap.display_image
+        bitmap.command_interpreter(instruction)
       else
         raise 'Please enter a valid command.'
       end
