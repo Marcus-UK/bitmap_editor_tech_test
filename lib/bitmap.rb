@@ -11,7 +11,8 @@ attr_reader :image
   def command_interpreter(command)
     case command[0]
       when 'S' then display_image
-      when 'L' then colour_pixel(command[1], command[2], command[3])
+      when 'L' then colour_pixel(*command[1..-1])
+      when 'V' then draw_vertical_line(*command[1..-1])
     end
   end
 
@@ -24,6 +25,14 @@ private
   def colour_pixel(x_loc, y_loc, colour)
     raise location_error if invalid_location?(x_loc, y_loc)
     image[x_loc - 1][y_loc - 1] = colour
+  end
+
+  def draw_vertical_line(x_loc, y_start, y_end, colour)
+    location = y_start
+    until location > y_end do
+      image[location - 1][ x_loc - 1] = colour
+      location += 1
+    end
   end
 
   def max_size_error
