@@ -11,6 +11,10 @@ attr_reader :image
     image.each { |row| puts row.join("")}
   end
 
+  def colour_pixel(x_loc, y_loc, colour)
+    image[x_loc - 1][y_loc - 1] = colour
+  end
+
   private
 
   def max_size_error

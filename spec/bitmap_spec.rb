@@ -22,4 +22,12 @@ describe Bitmap do
       expect{ bitmap.display_image }.to output(image_to_display).to_stdout
     end
   end
+
+  describe '#colour_pixel' do
+
+    it 'changes the color of a pixel at the specified location' do
+      bitmap.colour_pixel(1, 1, "C")
+      expect(bitmap.image[0][0]).to eq "C"
+    end
+  end
 end
