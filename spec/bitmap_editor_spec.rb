@@ -1,7 +1,9 @@
 require'./lib/bitmap_editor'
 
 describe BitmapEditor do
-subject(:bitmap_editor) { described_class.new }
+subject(:bitmap_editor) { described_class.new(parser_dbl) }
+let(:parser_dbl) { double :TextParser,
+                   :parse => [['I', 4, 3], ['S']] }
 
   describe '#run' do
     it 'creates a bitmap using the provided instructions and displays it' do
@@ -12,6 +14,4 @@ subject(:bitmap_editor) { described_class.new }
       expect{ bitmap_editor.run(show_test_file) }.to output(expected_image).to_stdout
     end
   end
-
-
 end

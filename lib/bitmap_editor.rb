@@ -10,7 +10,7 @@ class BitmapEditor
   end
 
   def run(file)
-    instructions = @parser.parse(file)
+    instructions = parser.parse(file)
     instructions.each do |instruction|
       if instruction[0] == "I" && command_valid?(instruction)
         create_bitmap(instruction[1], instruction[2])
