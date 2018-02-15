@@ -12,6 +12,7 @@ attr_reader :image
   end
 
   def colour_pixel(x_loc, y_loc, colour)
+    raise location_error if invalid_location?(x_loc, y_loc)
     image[x_loc - 1][y_loc - 1] = colour
   end
 
@@ -20,6 +21,15 @@ attr_reader :image
   def max_size_error
     "The bitmap cannot have a height or width greater than #{MAX_DIMENSION}."
   end
+
+  def location_error
+    'Location is not on the bitmap.'
+  end
+
+  def invalid_location?(x_loc, y_loc)
+    !image.dig(x_loc - 1, y_loc - 1)
+  end
+
 
   def dimension_too_large?(width, height)
     width > 250 || height > 250

@@ -29,5 +29,10 @@ describe Bitmap do
       bitmap.colour_pixel(1, 1, "C")
       expect(bitmap.image[0][0]).to eq "C"
     end
+
+    it 'raises an error if the location passed is not on the bitmap' do
+      location_error = 'Location is not on the bitmap.'
+      expect{ bitmap.colour_pixel(4, 4, "C") }.to raise_error(location_error)
+    end
   end
 end
