@@ -38,6 +38,7 @@ private
   end
 
   def draw_horizontal_line(x_start, x_end, y_loc, colour)
+    raise location_error if h_line_off_grid?(x_start, x_end)
     location = x_start
     until location > x_end do
       image[y_loc - 1][location - 1] = colour
@@ -60,6 +61,11 @@ private
   def v_line_off_grid?(y_start, y_end)
     line_length = y_end - y_start
     y_start + line_length > image.length
+  end
+
+  def h_line_off_grid?(x_start, x_end)
+    line_length = x_end - x_start
+    x_start + line_length > image[0].length
   end
 
   def dimension_too_large?(width, height)
