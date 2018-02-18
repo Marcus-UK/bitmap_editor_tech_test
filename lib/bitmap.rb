@@ -13,6 +13,7 @@ attr_reader :image
       when 'S' then display_image
       when 'L' then colour_pixel(*command[1..-1])
       when 'V' then draw_vertical_line(*command[1..-1])
+      when 'H' then draw_horizontal_line(*command[1..-1])
     end
   end
 
@@ -36,6 +37,14 @@ private
     end
   end
 
+  def draw_horizontal_line(x_start, x_end, y_loc, colour)
+    location = x_start
+    until location > x_end do
+      image[y_loc - 1][location - 1] = colour
+      location += 1
+    end
+  end
+
   def max_size_error
     "The bitmap cannot have a height or width greater than #{MAX_DIMENSION}."
   end
@@ -50,7 +59,7 @@ private
 
   def v_line_off_grid?(y_start, y_end)
     line_length = y_end - y_start
-    (y_start) + line_length > image.length
+    y_start + line_length > image.length
   end
 
   def dimension_too_large?(width, height)

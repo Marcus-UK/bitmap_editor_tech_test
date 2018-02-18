@@ -41,5 +41,10 @@ describe Bitmap do
       line_error = 'Location is not on the bitmap.'
       expect{ bitmap.command_interpreter(['V', 1, 1, 4, 'C']) }.to raise_error(line_error)
     end
+
+    it 'takes an H command and draws a horizontal line on the bitmap' do
+      bitmap.command_interpreter(['H', 1, 3, 1, 'C'])
+      expect(bitmap.image).to eq([['C', 'C', 'C'], ['O','O','O'], ['O', 'O','O']])
+    end
   end
 end
