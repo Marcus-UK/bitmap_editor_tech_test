@@ -28,6 +28,7 @@ private
   end
 
   def draw_vertical_line(x_loc, y_start, y_end, colour)
+    raise location_error if v_line_off_grid?(y_start, y_end)
     location = y_start
     until location > y_end do
       image[location - 1][ x_loc - 1] = colour
@@ -47,6 +48,10 @@ private
     !image.dig(x_loc - 1, y_loc - 1)
   end
 
+  def v_line_off_grid?(y_start, y_end)
+    line_length = y_end - y_start
+    (y_start) + line_length > image.length
+  end
 
   def dimension_too_large?(width, height)
     width > 250 || height > 250
