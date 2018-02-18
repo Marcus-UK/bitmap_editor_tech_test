@@ -14,6 +14,7 @@ attr_reader :image
       when 'L' then colour_pixel(*command[1..-1])
       when 'V' then draw_vertical_line(*command[1..-1])
       when 'H' then draw_horizontal_line(*command[1..-1])
+      when 'C' then clear_bitmap
     end
   end
 
@@ -45,6 +46,13 @@ private
       location += 1
     end
   end
+
+  def clear_bitmap
+    image.each do |line|
+      line.each {|pixel| pixel = 'O'}
+    end
+  end
+
 
   def max_size_error
     "The bitmap cannot have a height or width greater than #{MAX_DIMENSION}."

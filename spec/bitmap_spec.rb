@@ -51,5 +51,11 @@ describe Bitmap do
       line_error = 'Location is not on the bitmap.'
       expect{ bitmap.command_interpreter(['H', 1, 4, 1, 'C']) }.to raise_error(line_error)
     end
+
+    it 'takes a C command and resets the bitmap to its original state' do
+      bitmap.command_interpreter(['V', 1, 3, 1, 'C'])
+      bitmap.command_interpreter(['C'])
+      expect(bitmap.image).to eq([['O', 'O', 'O'], ['O', 'O', 'O'], ['O', 'O', 'O']])
+    end
   end
 end
