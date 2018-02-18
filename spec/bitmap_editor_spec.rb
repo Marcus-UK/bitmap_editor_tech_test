@@ -13,5 +13,12 @@ let(:parser_dbl) { double :TextParser,
                        "OOOO\n")
       expect{ bitmap_editor.run(show_test_file) }.to output(expected_image).to_stdout
     end
+
+    it 'raises an error if an invalid command is passed' do
+      invalid_command_dbl = double :TextParser, :parse => [['I', 4, 3], ['X']]
+      invalid_bitmap = described_class.new(invalid_command_dbl)
+      command_error = 'Please enter a valid command.'
+      expect{ invalid_bitmap.run('text.txt')}.to raise_error(command_error)
+    end
   end
 end
