@@ -17,7 +17,14 @@ let(:parser_dbl) { double :TextParser,
       invalid_command_dbl = double :TextParser, :parse => [['I', 4, 3], ['X']]
       invalid_bitmap = described_class.new(invalid_command_dbl)
       command_error = 'Please enter a valid command.'
-      expect{ invalid_bitmap.run('text.txt')}.to raise_error(command_error)
-    end 
+      expect{ invalid_bitmap.run('text.txt') }.to raise_error(command_error)
+    end
+
+    it 'raises an error if a command is entered before a bitmap is created' do
+      invalid_command_dbl = double :TextParser, :parse =>[['S']]
+      no_bitmap = described_class.new(invalid_command_dbl)
+      no_bitmap_error = 'You must create a bitmap first.'
+      expect{ no_bitmap.run('text.txt') }.to raise_error(no_bitmap_error)
+    end
   end
 end

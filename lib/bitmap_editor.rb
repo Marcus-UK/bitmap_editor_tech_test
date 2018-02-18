@@ -15,6 +15,7 @@ class BitmapEditor
       if instruction[0] == "I" && command_valid?(instruction)
         create_bitmap(instruction[1], instruction[2])
       elsif command_valid?(instruction)
+        raise bitmap_error if bitmap_does_not_exist
         bitmap.command_interpreter(instruction)
       else
         raise 'Please enter a valid command.'
@@ -27,9 +28,17 @@ class BitmapEditor
     @bitmap = Bitmap.new(width, height)
   end
 
-#private
+private
 
   def command_valid?(instruction)
     instruction[0] =~ /[ICLVHS]/ ? true : false
+  end
+
+  def bitmap_does_not_exist
+    bitmap.nil?
+  end
+
+  def bitmap_error
+    'You must create a bitmap first.'
   end
 end
