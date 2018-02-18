@@ -48,8 +48,8 @@ private
   end
 
   def clear_bitmap
-    image.each do |line|
-      line.each {|pixel| pixel = 'O'}
+    image.map! do |line|
+      line.map! {|pixel| pixel = 'O'}
     end
   end
 

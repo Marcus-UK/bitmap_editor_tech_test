@@ -7,11 +7,10 @@ let(:parser_dbl) { double :TextParser,
 
   describe '#run' do
     it 'creates a bitmap using the provided instructions and displays it' do
-      show_test_file = './spec/fixtures/show_test_file.txt'
       expected_image= ("OOOO\n" +
                        "OOOO\n" +
                        "OOOO\n")
-      expect{ bitmap_editor.run(show_test_file) }.to output(expected_image).to_stdout
+      expect{ bitmap_editor.run('text.txt') }.to output(expected_image).to_stdout
     end
 
     it 'raises an error if an invalid command is passed' do
@@ -19,6 +18,6 @@ let(:parser_dbl) { double :TextParser,
       invalid_bitmap = described_class.new(invalid_command_dbl)
       command_error = 'Please enter a valid command.'
       expect{ invalid_bitmap.run('text.txt')}.to raise_error(command_error)
-    end
+    end 
   end
 end
