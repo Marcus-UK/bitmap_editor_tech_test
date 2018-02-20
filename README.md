@@ -74,3 +74,14 @@ The following commands are currently supported in this application:
 
 - Ruby
 - Rspec
+
+# My approach
+
+In order to complete this tech test, I've followed a BDD pattern. As
+such, I began by outlining the requirements of the software with a series of
+user stories. Each of these relate to a particular feature within the program.
+Once I had defined the requirements, each feature was built using a strict TDD
+process. The result is that the software meets the requirements of the test.
+
+Throughout the program, I have tried to include clear and explicit error
+reporting. As such, invalid commands should raise helpful error messages.
