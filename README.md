@@ -4,7 +4,7 @@ This is an attempt at the Bitmap Editor tech test. In order to complete the
 challenge, I have utilised a BDD pattern. As such, I have broken the challenge
 down in to a number of user stories that can be seen below.
 
-#User stories
+# User stories
 
 ```
 
