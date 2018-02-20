@@ -49,7 +49,7 @@ To run this application, follow these commands:
 ```
 $ Clone this repo into a local directory.
 $ Navigate to the project and run 'bundle' to install dependencies.
-$ in the root directory of the application, rub 'bin/bitmap_editor examples/show.txt'.
+$ in the root directory of the application, run 'bin/bitmap_editor examples/show.txt'.
 ```
 
 To run the tests:
